@@ -6216,6 +6216,27 @@ body.v2 #page-settings.set-detail .settings-wrap>.settings-card.v2-open{display:
 .v2-call .call-av{display:grid;place-items:center;font-family:var(--serif);font-size:26px;color:rgba(242,232,214,.75)}
 .call-cap[style*="hidden"]{opacity:0}
 
+
+/* 通话拼贴背景 */
+.v2-call{background:#080807!important}
+.call-bg{position:absolute;inset:0;overflow:hidden;z-index:0}
+.call-bg img{
+  position:absolute;display:block;width:72%;height:auto;object-fit:cover;
+  opacity:.78;filter:grayscale(1) contrast(1.02) brightness(1.02);
+  box-shadow:0 24px 60px -30px #000;
+  mix-blend-mode:normal;
+}
+.call-bg .cb1{left:-10%;top:-6%;transform:rotate(-7deg)}
+.call-bg .cb2{right:-14%;top:26%;width:78%;transform:rotate(8deg);opacity:.7}
+.call-bg .cb3{left:2%;bottom:-12%;width:64%;transform:rotate(-4deg);opacity:.62}
+.call-grain{position:absolute;inset:0;opacity:.22;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+.call-shade{position:absolute;inset:0;background:
+  radial-gradient(ellipse 74% 56% at 50% 40%,rgba(8,8,7,.06),rgba(8,8,7,.5) 82%),
+  linear-gradient(180deg,rgba(8,8,7,.42),rgba(8,8,7,.08) 32%,rgba(8,8,7,.62))}
+.call-top,.call-pair,.call-cap,.call-acts,.call-credit{position:relative;z-index:2}
+.call-av{box-shadow:0 0 0 1px rgba(255,250,240,.35),0 24px 50px -26px #000!important}
+
 </style>
 </head>
 <body class="night skin-cabinet v2" data-fs="m">
@@ -12684,7 +12705,11 @@ tick();setInterval(tick,60000);})();
   var wrap=document.createElement('div');
   wrap.className='v2-call';wrap.id='v2Call';
   wrap.innerHTML=
-   '<div class="call-amb"></div>'
+   '<div class="call-bg" aria-hidden="true">'
+  +'<img class="cb1" src="callbg/a.jpg" alt=""><img class="cb2" src="callbg/b.jpg" alt=""><img class="cb3" src="callbg/c.jpg" alt="">'
+  +'<span class="call-grain"></span><span class="call-shade"></span>'
+  +'</div>'
+  +'<div class="call-amb"></div>'
   +'<div class="call-top"><span class="call-status" id="callStatus">正在接通…</span><span class="call-timer" id="callTimer">00:00</span></div>'
   +'<div class="call-pair">'
   +'<div class="call-av" id="callAvThem"></div>'
