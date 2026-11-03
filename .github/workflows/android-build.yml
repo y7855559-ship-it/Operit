@@ -200,6 +200,12 @@ jobs:
           set -euo pipefail
           echo "sdk.dir=$ANDROID_HOME" > local.properties
 
+      - name: Restore stable debug keystore
+        uses: actions/cache@v4
+        with:
+          path: ~/.android/debug.keystore
+          key: stable-debug-keystore-v1
+
       - name: Run Gradle build
         env:
           DISPATCH_GRADLE_TASK: ${{ inputs.gradle_task }}
