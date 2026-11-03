@@ -6184,58 +6184,49 @@ body.v2 #page-settings.set-detail .settings-wrap>.settings-card.v2-open{display:
 }
 
 
-/* ================= 通话界面 ================= */
-.v2-call{position:fixed;inset:0;z-index:15000;display:none;overflow:hidden;
-  background:radial-gradient(120% 70% at 50% 0%,#3a2b24,#140f0c 70%);color:#f2e8d6}
-.v2-call.on{display:flex;flex-direction:column;align-items:center}
-.call-amb{position:absolute;inset:0;pointer-events:none;opacity:.5;
-  background:radial-gradient(circle at 50% 38%,rgba(226,183,120,.22),transparent 46%);
-  animation:callBreathe 5.5s ease-in-out infinite}
-@keyframes callBreathe{0%,100%{transform:scale(1);opacity:.42}50%{transform:scale(1.12);opacity:.62}}
-.call-top{position:relative;z-index:2;width:100%;display:flex;justify-content:space-between;align-items:center;
-  padding:calc(18px + env(safe-area-inset-top)) 22px 0;font-family:var(--cjk);font-size:11px;letter-spacing:.2em;color:rgba(242,232,214,.75)}
-.call-timer{font-family:var(--serif);font-size:13px;letter-spacing:.1em}
-.call-pair{position:relative;z-index:2;flex:1;display:flex;align-items:center;justify-content:center;gap:-20px}
-.call-av{width:118px;height:118px;border-radius:50%;background-size:cover;background-position:center;
-  background-color:rgba(255,246,228,.12);border:1px solid rgba(226,183,120,.45);
-  box-shadow:0 0 0 8px rgba(255,246,228,.05),0 20px 44px -22px #000}
-.call-av-me{width:92px;height:92px;margin-left:-26px;transform:translateY(34px);opacity:.92}
-.call-cap{position:relative;z-index:2;max-width:86%;text-align:center;min-height:3.4em;
-  padding:12px 16px;border-radius:14px;margin-bottom:18px;
-  background:rgba(255,250,240,.10);border:1px solid rgba(255,250,240,.18);
-  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
-  font-family:var(--cjk);font-size:13px;line-height:1.9;color:#f4ecdd}
-.call-acts{position:relative;z-index:2;display:flex;gap:14px;padding-bottom:calc(30px + env(safe-area-inset-bottom))}
-.call-btn{padding:14px 30px;border-radius:999px;border:1px solid rgba(255,250,240,.25);
-  background:rgba(255,250,240,.12);color:#f4ecdd;font-family:var(--cjk);font-size:13px;letter-spacing:.16em}
-.call-btn.hang{background:rgba(143,47,39,.85);border-color:rgba(200,80,70,.6)}
-.call-credit{position:relative;z-index:2;padding-bottom:14px;font-family:var(--serif);font-size:7px;
-  letter-spacing:.24em;text-transform:uppercase;color:rgba(242,232,214,.35)}
-
-
-.v2-call .call-av{display:grid;place-items:center;font-family:var(--serif);font-size:26px;color:rgba(242,232,214,.75)}
-.call-cap[style*="hidden"]{opacity:0}
-
-
-/* 通话拼贴背景 */
-.v2-call{background:#080807!important}
-.call-bg{position:absolute;inset:0;overflow:hidden;z-index:0}
-.call-bg img{
-  position:absolute;display:block;width:72%;height:auto;object-fit:cover;
-  opacity:.78;filter:grayscale(1) contrast(1.02) brightness(1.02);
-  box-shadow:0 24px 60px -30px #000;
-  mix-blend-mode:normal;
-}
-.call-bg .cb1{left:-10%;top:-6%;transform:rotate(-7deg)}
-.call-bg .cb2{right:-14%;top:26%;width:78%;transform:rotate(8deg);opacity:.7}
-.call-bg .cb3{left:2%;bottom:-12%;width:64%;transform:rotate(-4deg);opacity:.62}
-.call-grain{position:absolute;inset:0;opacity:.22;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
-.call-shade{position:absolute;inset:0;background:
-  radial-gradient(ellipse 74% 56% at 50% 40%,rgba(8,8,7,.06),rgba(8,8,7,.5) 82%),
-  linear-gradient(180deg,rgba(8,8,7,.42),rgba(8,8,7,.08) 32%,rgba(8,8,7,.62))}
-.call-top,.call-pair,.call-cap,.call-acts,.call-credit{position:relative;z-index:2}
-.call-av{box-shadow:0 0 0 1px rgba(255,250,240,.35),0 24px 50px -26px #000!important}
+/* ================= 来电 / 通话 ================= */
+.call2{position:fixed;inset:0;z-index:16000;display:none;overflow:hidden;background:#080807;color:#f2e8d6}
+.call2.on{display:block}
+.call2-bg{position:absolute;inset:0;z-index:0}
+.call2-bg img{position:absolute;width:74%;opacity:.72;filter:grayscale(1) contrast(1.04) brightness(.96)}
+.call2-bg img:nth-child(1){left:-12%;top:-8%;transform:rotate(-7deg)}
+.call2-bg img:nth-child(2){right:-16%;top:24%;width:80%;transform:rotate(8deg);opacity:.62}
+.call2-bg img:nth-child(3){left:0;bottom:-14%;width:66%;transform:rotate(-4deg);opacity:.56}
+.call2-shade{position:absolute;inset:0;background:
+  radial-gradient(74% 56% at 50% 42%,rgba(8,8,7,.05),rgba(8,8,7,.55) 82%),
+  linear-gradient(180deg,rgba(8,8,7,.5),rgba(8,8,7,.12) 30%,rgba(8,8,7,.72))}
+.call2-body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;
+  padding:calc(28px + env(safe-area-inset-top)) 22px calc(26px + env(safe-area-inset-bottom))}
+.c2-status{font-family:var(--cjk);font-size:12px;letter-spacing:.28em;color:rgba(242,232,214,.82)}
+.call2.ring .c2-status{animation:c2pulse 1.6s ease-in-out infinite}
+@keyframes c2pulse{0%,100%{opacity:.55}50%{opacity:1}}
+.c2-reason{margin-top:12px;max-width:280px;text-align:center;font-family:var(--cjk);font-size:13px;
+  line-height:1.9;color:rgba(244,236,221,.92);padding:9px 14px;border-radius:12px;
+  background:rgba(255,250,240,.1);border:1px solid rgba(255,250,240,.16)}
+.c2-pair{flex:1;display:flex;align-items:center;justify-content:center;position:relative}
+.c2-av{width:132px;height:132px;border-radius:50%;background-size:cover;background-position:center;
+  display:grid;place-items:center;font-family:var(--serif);font-size:30px;color:rgba(242,232,214,.82);
+  border:1px solid rgba(255,246,228,.42);box-shadow:0 0 0 10px rgba(255,246,228,.05),0 26px 60px -30px #000}
+.c2-av.me{width:96px;height:96px;margin-left:-26px;transform:translateY(40px);opacity:.9;font-size:22px}
+.call2.ring .c2-av.them{animation:c2ring 2.4s ease-in-out infinite}
+@keyframes c2ring{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.c2-caps{width:100%;max-width:330px;display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.c2-cap{padding:9px 13px;border-radius:13px;font-family:var(--cjk);font-size:12.5px;line-height:1.75;
+  background:rgba(255,250,240,.1);border:1px solid rgba(255,250,240,.14);color:#f4ecdd;align-self:flex-start}
+.c2-cap.me{align-self:flex-end;background:rgba(226,183,120,.16);border-color:rgba(226,183,120,.26)}
+.c2-acts .c2-btn.hang{display:none}
+.call2.ring .c2-acts .c2-btn.hang{display:inline-block}
+.call2.live .c2-acts .c2-btn.hang{display:inline-block}
+.call2.live .c2-acts .c2-btn.acc{display:none}
+.c2-quick{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;justify-content:center}
+.c2-quick button{padding:8px 14px;border-radius:999px;border:1px solid rgba(255,250,240,.22);
+  background:rgba(255,250,240,.08);color:rgba(244,236,221,.9);font-family:var(--cjk);font-size:11px}
+.c2-acts{display:flex;gap:14px;align-items:center}
+.c2-btn{padding:14px 26px;border-radius:999px;border:1px solid rgba(255,250,240,.25);
+  background:rgba(255,250,240,.1);color:#f4ecdd;font-family:var(--cjk);font-size:13px;letter-spacing:.14em}
+.c2-btn.acc{background:rgba(70,130,90,.85);border-color:rgba(120,190,140,.5)}
+.c2-btn.hang{background:rgba(143,47,39,.88);border-color:rgba(200,80,70,.55)}
+.c2-tip{margin-top:12px;font-family:var(--cjk);font-size:10.5px;letter-spacing:.12em;color:rgba(244,236,221,.6);min-height:1em}
 
 </style>
 </head>
@@ -11966,7 +11957,7 @@ tick();setInterval(tick,60000);})();
 
   function open(){
     try{var v=localStorage.getItem('stone-tarot-deck');if(v==='paper'||v==='ink'||v==='art')deckMode=v}catch(e){}
-    render();root.classList.add('open')}
+    render();paintDeckBtn();root.classList.add('open')}
   function close(){root.classList.remove('open');try{document.body.style.overflow='';document.documentElement.style.overflow='';}catch(e){}}
   window.addEventListener('pagehide',function(){try{document.body.style.overflow='';}catch(e){}});
   document.addEventListener('visibilitychange',function(){try{if(document.visibilityState==='visible'&&!root.classList.contains('open')){document.body.style.overflow='';}}catch(e){}});
@@ -12701,117 +12692,245 @@ tick();setInterval(tick,60000);})();
 
 <script>
 (function(){
-  /* ================= 通话界面（借鉴 callhome 的形态，署名原作者） ================= */
-  var wrap=document.createElement('div');
-  wrap.className='v2-call';wrap.id='v2Call';
-  wrap.innerHTML=
-   '<div class="call-bg" aria-hidden="true">'
-  +'<img class="cb1" src="callbg/a.jpg" alt=""><img class="cb2" src="callbg/b.jpg" alt=""><img class="cb3" src="callbg/c.jpg" alt="">'
-  +'<span class="call-grain"></span><span class="call-shade"></span>'
-  +'</div>'
-  +'<div class="call-amb"></div>'
-  +'<div class="call-top"><span class="call-status" id="callStatus">正在接通…</span><span class="call-timer" id="callTimer">00:00</span></div>'
-  +'<div class="call-pair">'
-  +'<div class="call-av" id="callAvThem"></div>'
-  +'<div class="call-av call-av-me" id="callAvMe"></div>'
-  +'</div>'
-  +'<div class="call-cap" id="callCap">…</div>'
-  +'<div class="call-acts">'
-  +'<button class="call-btn ghost" id="callMic">按住说话</button>'
-  +'<button class="call-btn hang" id="callHang">挂断</button>'
-  +'</div>'
-  +'<div class="call-credit">界面灵感来自 Callhome · Elle / Matt</div>';
-  document.body.appendChild(wrap);
+  /* ============ Callhome 式通话引擎（自研实现，仅借鉴交互形态） ============ */
+  var S={on:false,incoming:false,t0:0,timer:null,ringCtx:null,ringTimer:null,
+         graceUntil:0,lastThem:'',dnd:false,lines:[]};
+  try{S.dnd=localStorage.getItem('stone-dnd')==='1'}catch(e){}
 
-  var statusEl=document.getElementById('callStatus');
-  var timerEl=document.getElementById('callTimer');
-  var capEl=document.getElementById('callCap');
-  var avThem=document.getElementById('callAvThem');
-  var avMe=document.getElementById('callAvMe');
-  var micBtn=document.getElementById('callMic');
-  var hangBtn=document.getElementById('callHang');
-  var t0=0,timer=null,turns=0;
+  /* ---------- 铃声（WebAudio 生成，不依赖音频文件） ---------- */
+  function ringStart(){
+    ringStop();
+    var ctx=new (window.AudioContext||window.webkitAudioContext)();
+    S.ringCtx=ctx;
+    function burst(){
+      var t=ctx.currentTime;
+      [0,0.42].forEach(function(off,i){
+        var o=ctx.createOscillator(),g=ctx.createGain();
+        o.type='sine'; o.frequency.value=i?660:520;
+        g.gain.setValueAtTime(0,t+off);
+        g.gain.linearRampToValueAtTime(.18,t+off+.05);
+        g.gain.exponentialRampToValueAtTime(.001,t+off+.36);
+        o.connect(g); g.connect(ctx.destination);
+        o.start(t+off); o.stop(t+off+.4);
+      });
+    }
+    burst();
+    S.ringTimer=setInterval(burst,2400);
+  }
+  function ringStop(){
+    if(S.ringTimer){clearInterval(S.ringTimer);S.ringTimer=null}
+    if(S.ringCtx){try{S.ringCtx.close()}catch(e){};S.ringCtx=null}
+  }
 
-  function avatars(){
+  /* ---------- UI ---------- */
+  var root=document.createElement('div');
+  root.className='call2'; root.id='call2';
+  root.innerHTML=
+    '<div class="call2-bg"><img src="callbg/a.jpg" alt=""><img src="callbg/b.jpg" alt=""><img src="callbg/c.jpg" alt=""><span class="call2-shade"></span></div>'
+   +'<div class="call2-body">'
+   +'<div class="c2-status" id="c2Status">来电</div>'
+   +'<div class="c2-reason" id="c2Reason"></div>'
+   +'<div class="c2-pair"><div class="c2-av them" id="c2AvThem">TA</div><div class="c2-av me" id="c2AvMe">你</div></div>'
+   +'<div class="c2-caps" id="c2Caps"></div>'
+   +'<div class="c2-quick" id="c2Quick">'
+   +'<button data-r="在忙，等下回你">在忙</button><button data-r="在外面，不方便接">在外面</button><button data-r="想打字聊">打字聊</button>'
+   +'</div>'
+   +'<div class="c2-acts" id="c2Acts">'
+   +'<button class="c2-btn mut" id="c2Mute">静音</button>'
+   +'<button class="c2-btn hang" id="c2Hang">挂断</button>'
+   +'<button class="c2-btn acc" id="c2Accept">接听</button>'
+   +'</div>'
+   +'<div class="c2-tip" id="c2Tip"></div>'
+   +'</div>';
+  document.body.appendChild(root);
+
+  var el={status:root.querySelector('#c2Status'),reason:root.querySelector('#c2Reason'),
+    caps:root.querySelector('#c2Caps'),quick:root.querySelector('#c2Quick'),
+    accept:root.querySelector('#c2Accept'),hang:root.querySelector('#c2Hang'),
+    mute:root.querySelector('#c2Mute'),tip:root.querySelector('#c2Tip'),
+    them:root.querySelector('#c2AvThem'),me:root.querySelector('#c2AvMe')};
+
+  function paintAvatars(){
     try{
-      var av=loadAvatars()||{};
-      var src1=av.them&&imgSrc?imgSrc(av.them):'';
-      var src2=av.me&&imgSrc?imgSrc(av.me):'';
-      avThem.style.backgroundImage=src1?('url("'+src1+'")'):'';
-      avMe.style.backgroundImage=src2?('url("'+src2+'")'):'';
-      if(!src1)avThem.textContent='TA';
-      if(!src2)avMe.textContent='你';
+      var av=(typeof loadAvatars==='function'?loadAvatars():null)||{};
+      function set(node,val,fallback){
+        if(val&&typeof imgSrc==='function'){
+          var s=imgSrc(val);
+          if(s){node.style.backgroundImage='url("'+s+'")';node.textContent='';return}
+        }
+        node.textContent=fallback;
+      }
+      set(el.them,av.them,'TA'); set(el.me,av.me,'你');
     }catch(e){}
   }
-  function tick(){
-    var s=Math.floor((Date.now()-t0)/1000);
-    var m=('0'+Math.floor(s/60)).slice(-2), ss=('0'+(s%60)).slice(-2);
-    timerEl.textContent=m+':'+ss;
+  function cap(text,who){
+    S.lines.push({t:text,w:who||'them'});
+    if(S.lines.length>3)S.lines.shift();
+    el.caps.innerHTML='';
+    S.lines.forEach(function(l){
+      var d=document.createElement('div');
+      d.className='c2-cap '+(l.w==='me'?'me':'them');
+      d.textContent=l.t; el.caps.appendChild(d);
+    });
   }
-  function say(t){ if(!t){capEl.style.visibility='hidden';return} capEl.style.visibility='visible'; capEl.textContent=t; }
 
-  async function maybeSpeak(text){
-    try{ if(typeof stoneSpeak==='function') await stoneSpeak(text); }catch(e){}
+  /* ---------- 通话核心 ---------- */
+  function fmt(s){return ('0'+Math.floor(s/60)).slice(-2)+':'+('0'+(s%60)).slice(-2)}
+  function tick(){ if(!S.on)return; el.status.textContent='通话中 '+fmt(Math.floor((Date.now()-S.t0)/1000)); }
+
+  function connect(){
+    S.on=true; S.incoming=false; S.t0=Date.now();
+    root.classList.add('on','live'); root.classList.remove('ring');
+    el.accept.style.display='none'; el.quick.style.display='none';
+    el.hang.style.display=''; el.mute.style.display=''; el.caps.style.display=''; el.hang.textContent='挂断'; el.hang.classList.add('hang');
+    el.status.textContent='通话中 00:00';
+    if(S.timer)clearInterval(S.timer);
+    S.timer=setInterval(tick,1000);
+    ringStop();
+    cap('喂？听得到吗。','them');
+    speak('喂？听得到吗。');
+    setTimeout(loop,1500);
+  }
+
+  async function speak(t){
+    if(!t)return;
+    try{ if(typeof stoneSpeak==='function') await stoneSpeak(t, function(){}) }catch(e){}
   }
 
   async function loop(){
-    if(!wrap.classList.contains('on'))return;
-    statusEl.textContent='在听…';
-    var heard=await stoneListen(4);
-    if(!wrap.classList.contains('on'))return;
-    if(!heard){ statusEl.textContent='没听清，再说一次'; setTimeout(loop,700); return }
-    say('“'+heard+'”');
-    try{
-      addMessage({role:'me',ts:nowHM(),content:heard});
-      persistMessages(messages); renderChat();
-    }catch(e){}
-    statusEl.textContent='TA 在想…';
-    try{ if(typeof generateReply==='function') await generateReply(); }catch(e){}
-    // 取最后一条 TA 的话
+    if(!S.on)return;
+    if(S.graceUntil && Date.now()<S.graceUntil) { /* 赖床窗口 */ }
+    var heard='';
+    try{ heard=await stoneListen(4) }catch(e){}
+    if(!S.on)return;
+    if(!heard){ return_delay(); return }
+    if(S.graceUntil && Date.now()<S.graceUntil){ S.graceUntil=0; el.tip.textContent=''; }
+    cap(heard,'me');
+    try{ addMessage({role:'me',ts:(typeof nowHM==='function'?nowHM():''),content:heard}); persistMessages(messages); renderChat(); }catch(e){}
+    el.status.textContent='TA 在想…';
+    try{ if(typeof generateReply==='function') await generateReply() }catch(e){}
     var last='';
-    try{
-      for(var i=messages.length-1;i>=0;i--){ if(messages[i]&&messages[i].role==='them'&&messages[i].content){last=messages[i].content;break} }
-    }catch(e){}
-    if(last){ say(last.slice(0,80)); statusEl.textContent='TA 在说…'; await maybeSpeak(last); }
-    if(wrap.classList.contains('on')){ statusEl.textContent='在听…'; setTimeout(loop,400); }
+    try{ for(var i=messages.length-1;i>=0;i--){var m=messages[i];if(m&&m.role==='them'&&m.content){last=m.content;break}} }catch(e){}
+    last=(last||'').replace(/⟪[^⟫]*⟫/g,'').trim();
+    if(last){ cap(last.slice(0,90),'them'); await speak(last) }
+    if(markerHang()){ hangup(true); return }
+    return_delay();
+  }
+  function return_delay(){ setTimeout(loop,600) }
+
+  /* ---------- 暗号 ---------- */
+  function lastThemRaw(){
+    try{ for(var i=messages.length-1;i>=0;i--){var m=messages[i];if(m&&m.role==='them'&&m.content)return m.content} }catch(e){}
+    return '';
+  }
+  function markerHang(){ return /⟪\s*挂断\s*⟫/.test(lastThemRaw()) }
+  function markerDial(){
+    var m=/⟪\s*拨号\s*[:：]?\s*([^⟫]*)⟫/.exec(lastThemRaw());
+    return m?m[1].trim():null;
   }
 
-  window.openCall=function(){
-    avatars();
-    wrap.classList.add('on');
-    t0=Date.now(); if(timer)timer=setInterval(tick,1000); tick();
-    statusEl.textContent='接通了';
-    say('');
-    turns++;
-    setTimeout(function(){ maybeSpeak('喂？听得到吗。'); },300);
-    setTimeout(loop,1800);
-  };
-  window.closeCall=function(){
-    wrap.classList.remove('on');
-    if(timer){clearInterval(timer);timer=null}
-    try{ if(typeof stoneStopSpeak==='function') stoneStopSpeak(); }catch(e){}
-  };
-  hangBtn.onclick=closeCall;
-  micBtn.onclick=function(){
-    // 手动再录一段
-    if(typeof stoneListen==='function'){ statusEl.textContent='在听…'; }
-    loop();
+  /* ---------- 来电 ---------- */
+  window.stoneIncoming=function(reason){
+    if(S.dnd){ logAny('未接通话（勿扰）'); return }
+    if(S.on)return;
+    S.incoming=true; paintAvatars();
+    root.classList.add('on','ring'); root.classList.remove('live');
+    el.reason.textContent=reason||'想听听你的声音';
+    el.status.textContent='来电';
+    el.accept.style.display=''; el.quick.style.display=''; el.hang.style.display=''; el.caps.style.display='none'; el.hang.textContent='拒接';
+    el.mute.style.display='none'; el.tip.textContent='';
+    S.lines=[]; el.caps.innerHTML='';
+    ringStart();
+    setTimeout(function(){ if(S.incoming){ miss(); } },45000);
   };
 
-  // 聊天页加一个电话入口
+  function decline(reason){
+    if(!S.incoming)return;
+    S.incoming=false; ringStop(); root.classList.remove('on','ring');
+    logAny('📞 未接来电'+(reason?(' · '+reason):''));
+    setTimeout(function(){ voicemail(reason) },1200);
+  }
+
+  function miss(){ decline('响了很久没接') }
+
+  async function voicemail(reason){
+    try{
+      if(typeof addMessage==='function' && typeof generateReply==='function'){
+        addMessage({role:'system',ts:'',content:'（我刚刚打电话给你，没接。'+(reason?('理由：'+reason+'。'):'')+'留一条语音吧，不想留就不留。）'});
+        if(typeof persistMessages==='function')persistMessages(messages);
+        await generateReply();
+        var t=lastThemRaw().replace(/⟪[^⟫]*⟫/g,'').trim();
+        if(t && !/不留|算了/.test(t) && typeof stoneSpeak==='function') stoneSpeak(t);
+      }
+    }catch(e){}
+  }
+
+  function hangup(grace){
+    if(!S.on)return;
+    ringStop();
+    el.status.textContent='要挂了吗…';
+    if(grace){ el.tip.textContent='说完最后一句就挂断'; S.graceUntil=Date.now()+18000; return }
+    endCall();
+  }
+  function endCall(){
+    S.on=false; S.incoming=false;
+    if(S.timer){clearInterval(S.timer);S.timer=null}
+    root.classList.remove('on','live','ring'); ringStop();
+    var dur=Math.floor((Date.now()-S.t0)/1000);
+    logAny('📞 语音通话 · '+fmt(dur));
+    try{ if(window.stoneStopSpeak)stoneStopSpeak() }catch(e){}
+  }
+
+  function logAny(text){
+    try{
+      if(typeof addMessage==='function'){
+        addMessage({role:'system',ts:(typeof nowHM==='function'?nowHM():''),content:text});
+        persistMessages(messages); renderChat();
+      }
+    }catch(e){}
+  }
+
+  /* ---------- 绑定 ---------- */
+  el.accept.onclick=connect;
+  el.hang.onclick=function(){ S.on?hangup(false):decline('主动挂断') };
+  el.mute.onclick=function(e){ e.stopPropagation(); el.mute.classList.toggle('on'); try{if(window.stoneMuted===undefined)window.stoneMuted=true;else window.stoneMuted=!window.stoneMuted}catch(x){} };
+  el.quick.querySelectorAll('button').forEach(function(b){
+    b.onclick=function(){ decline(b.getAttribute('data-r')) };
+  });
+
+  window.openCall=function(){ stoneIncoming('想听听你的声音') };
+  window.closeCall=endCall;
+  window.stoneHangup=hangup;
+  window.stoneDM=function(on){ S.dnd=!!on; try{localStorage.setItem('stone-dnd',on?'1':'0')}catch(e){} };
+  window.stoneDndState=function(){return S.dnd};
+
+  // TA 回复后自动检查暗号
+  if(typeof renderChat==='function'){
+    var _r=renderChat;
+    renderChat=function(){
+      var x=_r.apply(null,arguments);
+      try{
+        if(!S.on&&!S.incoming){
+          var d=markerDial();
+          if(d){ setTimeout(function(){ stoneIncoming(d) },600) }
+        }else if(S.on&&markerHang()){ hangup(true) }
+      }catch(e){}
+      setTimeout(function(){ paintAvatars() },30);
+      return x;
+    };
+  }
+
+  // 聊天页入口
   function mount(){
     var head=document.querySelector('#page-chat .subpage-header');
     if(!head||document.getElementById('chatCallBtn'))return;
     var b=document.createElement('button');
     b.type='button';b.id='chatCallBtn';b.className='subpage-more';b.textContent='☎';
-    b.setAttribute('aria-label','打给 TA');
     b.onclick=function(e){e.stopPropagation();window.openCall()};
-    var search=document.getElementById('chatSearchBtn');
-    if(search&&search.parentNode)search.parentNode.insertBefore(b,search.nextSibling);
-    else head.appendChild(b);
+    var s=document.getElementById('chatSearchBtn');
+    if(s&&s.parentNode)s.parentNode.insertBefore(b,s.nextSibling); else head.appendChild(b);
   }
   setTimeout(mount,1500);
-  if(typeof renderChat==='function'){var _r=renderChat;renderChat=function(){var x=_r.apply(null,arguments);setTimeout(mount,60);return x;};}
 })();
 </script>
 </body>
