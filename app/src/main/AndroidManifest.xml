@@ -497,6 +497,18 @@
             android:permission="android.permission.BIND_VOICE_INTERACTION"
             android:exported="true" />
         
+        <activity
+            android:name=".ui.stone.StoneActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden|uiMode"
+            android:label="Stone"
+            android:theme="@style/Theme.Operit">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
