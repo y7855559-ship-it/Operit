@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Extension
 import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Security
@@ -21,7 +22,8 @@ import com.ai.assistance.operit.R
 
 // 应用导航项
 sealed class NavItem(val route: String, val titleResId: Int, val icon: ImageVector) {
-        object AiChat : NavItem("ai_chat", R.string.nav_ai_chat, Icons.Default.Email)
+object StoneHome : NavItem("stone_home", R.string.app_name, Icons.Default.Home)
+                object AiChat : NavItem("ai_chat", R.string.nav_ai_chat, Icons.Default.Email)
         object ShizukuCommands :
                 NavItem("shizuku_commands", R.string.shizuku_commands, Icons.Default.Build)
         object AssistantConfig :

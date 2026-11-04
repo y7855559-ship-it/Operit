@@ -26,6 +26,7 @@ import androidx.navigation.NavController
 import com.ai.assistance.operit.R
 import com.ai.assistance.operit.ui.common.NavItem
 import com.ai.assistance.operit.ui.features.about.screens.AboutScreen
+import com.ai.assistance.operit.ui.features.stone.StoneHomeScreen
 import com.ai.assistance.operit.ui.features.assistant.screens.AssistantConfigScreen
 import com.ai.assistance.operit.ui.features.chat.screens.AIChatScreen
 import com.ai.assistance.operit.ui.features.demo.screens.ShizukuDemoScreen
@@ -141,6 +142,21 @@ sealed class Screen(
     }
 
     // Main screens (primary)
+    data object StoneHome : Screen(navItem = NavItem.StoneHome) {
+        @Composable
+        override fun Content(
+                navController: NavController,
+                navigateTo: ScreenNavigationHandler,
+                onGoBack: () -> Unit,
+                hasBackgroundImage: Boolean,
+                onLoading: (Boolean) -> Unit,
+                onError: (String) -> Unit,
+                onGestureConsumed: (Boolean) -> Unit
+        ) {
+            StoneHomeScreen(navigateTo)
+        }
+    }
+
     data object AiChat : Screen(navItem = NavItem.AiChat) {
         @Composable
         override fun Content(

@@ -144,6 +144,19 @@ class StoneActivity : Activity() {
     inner class StoneBridge {
         @JavascriptInterface fun ping(): String = "pong"
         @JavascriptInterface fun reload() { runOnUiThread { webView?.reload() } }
+        @JavascriptInterface fun openScreen(routeId: String) {
+            runOnUiThread {
+                try {
+                    val cls = Class.forName("com.ai.assistance.operit.ui.main.MainActivity")
+                    val i = Intent(this@StoneActivity, cls)
+                    i.putExtra("com.ai.assistance.operit.extra.OPEN_ROUTE_ID", routeId)
+                    startActivity(i)
+                } catch (e: Exception) {
+                    Toast.makeText(this@StoneActivity, "打不开：${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
         @JavascriptInterface fun openOperit() {
             runOnUiThread {
                 try {
