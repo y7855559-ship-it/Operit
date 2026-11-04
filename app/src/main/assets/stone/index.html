@@ -13380,6 +13380,29 @@ tick();setInterval(tick,60000);})();
 })();
 
 </script>
+
+<script>
+(function(){
+  function bridge(fn,arg){
+    try{ if(window.StoneNative&&window.StoneNative[fn]){ return window.StoneNative[fn](arg) } }catch(e){}
+    return null;
+  }
+  window.stoneOpenOperit=function(){ bridge('openOperit') };
+  window.stoneReload=function(){ bridge('reload') };
+
+  function mount(){
+    var host=document.getElementById('morePageContent');
+    if(!host||document.getElementById('v2OperitTile'))return;
+    var b=document.createElement('button');
+    b.type='button'; b.id='v2OperitTile'; b.className='v2-inj-tile';
+    b.innerHTML='<span class="t">Operit</span><span class="s">Toolbox</span><span class="n">打开原版工具台（终端 · 工具 · 商店）</span>';
+    b.onclick=function(){ window.stoneOpenOperit() };
+    host.insertBefore(b, host.firstChild);
+  }
+  setTimeout(mount,1600);
+  if(typeof renderMore==='function'){ var _r=renderMore; renderMore=function(){ var x=_r.apply(null,arguments); setTimeout(mount,60); return x } }
+})();
+</script>
 </body>
 
 
