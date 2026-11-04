@@ -19,6 +19,11 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
+import com.ai.assistance.operit.core.tools.AIToolHandler
+import com.ai.assistance.operit.data.model.AITool
+import com.ai.assistance.operit.data.model.ToolParameter
+import org.json.JSONArray
+import org.json.JSONObject
 import java.io.File
 
 class StoneActivity : Activity() {
@@ -146,6 +151,38 @@ class StoneActivity : Activity() {
                 } catch (e: Exception) {
                     Toast.makeText(this@StoneActivity, "打不开 Operit：${e.message}", Toast.LENGTH_LONG).show()
                 }
+            }
+        }
+
+        /** 列出 Operit 全部工具名 */
+        @JavascriptInterface fun listTools(): String {
+            return try {
+                val h = AIToolHandler.getInstance(this@StoneActivity)
+                val arr = JSONArray()
+                h.getAllToolNames().forEach { arr.put(it) }
+                arr.toString()
+            } catch (e: Exception) { "[]" }
+        }
+
+        /** 调用 Operit 工具：name + 参数数组 JSON [{"name":"path","value":"/sdcard"}] */
+        @JavascriptInterface fun callTool(name: String, paramsJson: String): String {
+            return try {
+                val h = AIToolHandler.getInstance(this@StoneActivity)
+                val arr = JSONArray(paramsJson.ifBlank { "[]" })
+                val params = ArrayList<ToolParameter>()
+                for (i in 0 until arr.length()) {
+                    val o = arr.getJSONObject(i)
+                    params.add(ToolParameter(o.optString("name"), o.optString("value")))
+                }
+                val res = h.invoke(AITool(name = name, parameters = params))
+                JSONObject()
+                    .put("success", res.success)
+                    .put("error", res.error ?: "")
+                    .put("result", res.result.toString())
+                    .toString()
+            } catch (e: Exception) {
+                JSONObject().put("success", false).put("error", e.message ?: "call failed")
+                    .put("result", "").toString()
             }
         }
     }
