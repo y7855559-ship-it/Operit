@@ -22,8 +22,6 @@ import android.widget.Toast
 import com.ai.assistance.operit.core.tools.AIToolHandler
 import com.ai.assistance.operit.data.model.AITool
 import com.ai.assistance.operit.data.model.ToolParameter
-import org.json.JSONArray
-import org.json.JSONObject
 import java.io.File
 
 class StoneActivity : Activity() {
@@ -140,6 +138,9 @@ class StoneActivity : Activity() {
         super.onDestroy()
     }
 
+    private fun esc(v: String): String =
+        v.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n").replace("\r", "\\r")
+
     inner class StoneBridge {
         @JavascriptInterface fun ping(): String = "pong"
         @JavascriptInterface fun reload() { runOnUiThread { webView?.reload() } }
@@ -158,9 +159,8 @@ class StoneActivity : Activity() {
         @JavascriptInterface fun listTools(): String {
             return try {
                 val h = AIToolHandler.getInstance(this@StoneActivity)
-                val arr = JSONArray()
-                h.getAllToolNames().forEach { arr.put(it) }
-                arr.toString()
+                val names = h.getAllToolNames()
+                names.joinToString(prefix = "[", postfix = "]") { "\"" + esc(it) + "\"" }
             } catch (e: Exception) { "[]" }
         }
 
@@ -168,21 +168,19 @@ class StoneActivity : Activity() {
         @JavascriptInterface fun callTool(name: String, paramsJson: String): String {
             return try {
                 val h = AIToolHandler.getInstance(this@StoneActivity)
-                val arr = JSONArray(paramsJson.ifBlank { "[]" })
+                val arr = org.json.JSONArray(paramsJson.ifBlank { "[]" })
                 val params = ArrayList<ToolParameter>()
                 for (i in 0 until arr.length()) {
-                    val o = arr.getJSONObject(i)
+                    val o = arr.optJSONObject(i) ?: continue
                     params.add(ToolParameter(o.optString("name"), o.optString("value")))
                 }
-                val res = h.invoke(AITool(name = name, parameters = params))
-                JSONObject()
-                    .put("success", res.success)
-                    .put("error", res.error ?: "")
-                    .put("result", res.result.toString())
-                    .toString()
+                val res = h.executeTool(AITool(name = name, parameters = params))
+                "{\"success\":" + res.success +
+                    ",\"error\":\"" + esc(res.error ?: "") +
+                    "\",\"result\":\"" + esc(res.result.toString()) + "\"}"
             } catch (e: Exception) {
-                JSONObject().put("success", false).put("error", e.message ?: "call failed")
-                    .put("result", "").toString()
+                "{\"success\":false,\"error\":\"" + esc(e.message ?: "call failed") +
+                    "\",\"result\":\"\"}"
             }
         }
     }
