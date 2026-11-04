@@ -68,14 +68,38 @@ import com.kyant.backdrop.backdrops.rememberLayerBackdrop
 import io.github.fletchmckee.liquid.liquefiable
 import io.github.fletchmckee.liquid.rememberLiquidState
 
+// Stone 配色：纸 · 墨 · 金 · 酒红
+private val StoneGold = Color(0xFFA9834A)
+private val StoneWine = Color(0xFF7A2B2F)
+private val StonePaper = Color(0xFFF3EADA)
+private val StoneInk = Color(0xFF2B2118)
+
 private val DarkColorScheme =
-        darkColorScheme(primary = Purple80, secondary = PurpleGrey80, tertiary = Pink80)
+        darkColorScheme(
+                primary = StoneGold,
+                secondary = StoneGold,
+                tertiary = StoneWine,
+                background = Color(0xFF12100D),
+                surface = Color(0xFF1C1712),
+                onPrimary = Color(0xFF1A140E),
+                onBackground = Color(0xFFEDE3D2),
+                onSurface = Color(0xFFEDE3D2),
+                surfaceVariant = Color(0xFF2A231B),
+                onSurfaceVariant = Color(0xFFCDBFA6)
+        )
 
 private val LightColorScheme =
         lightColorScheme(
-                primary = Purple40,
-                secondary = PurpleGrey40,
-                tertiary = Pink40,
+                primary = StoneGold,
+                secondary = StoneGold,
+                tertiary = StoneWine,
+                background = StonePaper,
+                surface = Color(0xFFF8F2E5),
+                onPrimary = Color(0xFFFFFDF6),
+                onBackground = StoneInk,
+                onSurface = StoneInk,
+                surfaceVariant = Color(0xFFE9DEC8),
+                onSurfaceVariant = Color(0xFF6B5B45)
 
                 /* Other default colors to override
                 background = Color(0xFFFFFBFE),
