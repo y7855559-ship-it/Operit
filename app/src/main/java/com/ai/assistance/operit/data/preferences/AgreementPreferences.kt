@@ -19,7 +19,8 @@ class AgreementPreferences(context: Context) {
 
     /** Check whether the user has accepted the current agreement version. */
     fun isAgreementAccepted(): Boolean {
-        return prefs.getString(KEY_ACCEPTED_AGREEMENT_VERSION, null) == CURRENT_AGREEMENT_VERSION
+        // 个人构建：跳过首次启动的用户协议页
+        return true
     }
 
     /** Records acceptance of the agreement version bundled with this app release. */
