@@ -434,7 +434,6 @@ android {
         }
         debug {
             applicationIdSuffix = ".debug"
-            archivesBaseName = "Stone-1.12.2-stone3"
             signingConfig = signingConfigs.getByName("debug")
             resValue("string", "app_name", "Operit Debug")
         }
