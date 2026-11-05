@@ -397,8 +397,8 @@ android {
         applicationId = "com.ai.assistance.operit"
         minSdk = 26
         targetSdk = 34
-        versionCode = 51
-        versionName = "1.12.2"
+        versionCode = 5203
+        versionName = "1.12.2-stone3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -434,6 +434,7 @@ android {
         }
         debug {
             applicationIdSuffix = ".debug"
+            archivesBaseName = "Stone-1.12.2-stone3"
             signingConfig = signingConfigs.getByName("debug")
             resValue("string", "app_name", "Operit Debug")
         }
